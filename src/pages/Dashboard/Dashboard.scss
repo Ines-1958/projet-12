@@ -1,0 +1,21 @@
+p {
+  color: #000000;
+  &.welcome {
+    span {
+      font-weight: bold;
+      font-size: 48px;
+      line-height: 24px;
+
+      &.user-firstName {
+        color: #ff0101;
+        margin-left: 8px;
+      }
+    }
+  }
+
+  &.text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
