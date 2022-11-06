@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import '../RadarChartActivity/RadarChartActivity.scss'
 import '../../classData/userData.js'
 // import getUserActivity, { UserData } from '../../classData/userData'
 import { getUserPerformance } from '../../classData/userData.js'
@@ -51,13 +52,13 @@ import {
 //     fullMark: 150,
 //   },
 // ]
-const test = 'http://localhost:3000/user/${userId}/activity'
+// const test = 'http://localhost:3000/user/${userId}/activity'
 
 export default function RadarChartActivity() {
   const { userId } = useParams()
   console.log(userId)
 
-  const [activity, setActivity] = useState('')
+  const [activity, setActivity] = useState([])
 
   //   const userPerformance = async () => {
   //     const donnees = new UserData(userId)
@@ -71,40 +72,52 @@ export default function RadarChartActivity() {
     console.log(activity)
   }, [])
 
-  //   useEffect(() => {
-  //     console.log(userId)
-  //     getUserPerformance(userId).then((users) => {
-  //       setActivity(users)
-  //     })
-  //   })
   console.log(activity)
 
-  return (
-    // <div>RadarChartActivity</div>
-    <RadarChart
-      cx={300}
-      cy={250}
-      outerRadius={150}
-      width={500}
-      height={500}
-      data={activity}
-    >
-      <PolarGrid />
-      <PolarAngleAxis
-        dataKey="kind"
-        // tickFormatter={(kindNumber) => {
-        //   return typeof kindNumber === 'number'
-        // }}
-      />
+  const test = Object.entries(activity)
+  console.log(test)
 
-      <PolarRadiusAxis axisLine={false} />
-      <Radar
-        // name="Mike"
-        dataKey={activity}
-        stroke="#8884d8"
-        fill="#8884d8"
-        fillOpacity={0.6}
-      />
-    </RadarChart>
+  const formattedKind = activity.map((data) => {
+    switch (data.kind) {
+      case 1:
+        return { ...data, kind: 'Intensité' }
+      case 2:
+        return { ...data, kind: 'Vitesse' }
+      case 3:
+        return { ...data, kind: 'Force' }
+      case 4:
+        return { ...data, kind: 'Endurance' }
+      case 5:
+        return { ...data, kind: 'Energie' }
+      case 6:
+        return { ...data, kind: 'Cardio' }
+      default:
+        return { ...data }
+    }
+  })
+  console.log(formattedKind)
+
+  return (
+    <div className="radar-chart">
+      <RadarChart
+        cx={300}
+        cy={250}
+        outerRadius={150}
+        width={500}
+        height={500}
+        data={formattedKind}
+      >
+        <PolarGrid radialLines={false} />
+        <PolarAngleAxis dataKey="kind" stroke="#FFFFFF" />
+        {/* <PolarRadiusAxis /> */}
+        <Radar
+          // name="Mike"
+          dataKey="value"
+          // stroke="#8884d8"
+          fill="rgba(255, 1, 1, 0.7)"
+          fillOpacity={0.6}
+        />
+      </RadarChart>
+    </div>
   )
 }

@@ -1,0 +1,47 @@
+span {
+  font-size: 14px;
+}
+
+.custom-tooltip {
+  background-color: #e60000;
+  padding: 4px;
+  font-style: normal;
+  font-weight: 500;
+  //   border: none;
+  outline: none;
+  p {
+    &.label {
+      color: #ffffff;
+      font-size: 7px;
+      line-height: 24px;
+      text-align: center;
+    }
+  }
+}
+
+.barchart-container {
+  width: 500px;
+  background: #fbfbfb;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+  border-radius: 5px;
+  position: relative;
+
+  p {
+    &.barchart-title {
+      //   position: absolute;
+      //   height: 24px;
+      //   left: 3.83%;
+      //   right: 80%;
+      //   top: calc(50% - 24px / 2 - 124px);
+      text-align: left;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 24px;
+      color: #20253a;
+
+      position: absolute;
+      top: 24px;
+      left: 32px;
+    }
+  }
+}

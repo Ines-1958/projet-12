@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import '../LineChartActivity/LineChartActivity.scss'
 import { getUserAverageSessions } from '../../classData/userData.js'
 import {
   LineChart,
@@ -24,8 +25,21 @@ export default function LineChartActivity() {
       setSessions(users)
     })
   }, [])
+
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip-session">
+          <p className="label-average-session">{` ${payload[0].value} min`}</p>
+        </div>
+      )
+    }
+
+    return null
+  }
+
   console.log(sessions)
-  let days = sessions.map((data) => {
+  let formattedDays = sessions.map((data) => {
     switch (data.day) {
       case 1:
         return { ...data, day: 'L' }
@@ -47,40 +61,50 @@ export default function LineChartActivity() {
   })
 
   return (
-    <div>
+    <div className="line-chart">
       <p>Durée moyenne des sessions</p>
 
       <LineChart
         width={500}
         height={300}
-        data={days}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
+        data={formattedDays}
+        // margin={{
+        //   top: 5,
+        //   right: 30,
+        //   left: 20,
+        //   bottom: 5,
+        // }}
+        margin={{ top: 2, right: 20, bottom: 3, left: 20 }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        {/* <CartesianGrid strokeDasharray="3 3" /> */}
         <XAxis
           dataKey="day"
+          // tick={false}
           axisLine={false}
-          //   tickLine={false}
+          stroke="#FFFFFF"
+          tickLine={false}
           //   tick={{
           //     fontSize: 12,
           //     fontWeight: 500,
           //   }}
         />
-        <YAxis dataKey="sessionLength" />
-        <Tooltip />
+        <YAxis dataKey="sessionLength" hide={true} tickLine={false} />
+        <Tooltip
+          content={<CustomTooltip />}
+          // cursor={{ stroke: 'black' }}
+        />
         <Legend />
         <Line
           type="monotone"
           dataKey="sessionLength"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
+          stroke="#FFFFFF"
+          strokeWidth={2}
+          //   activeDot={{ r: 8 }}
+          active
+          dot={false}
+          activeDot={{ stroke: '#FFFFFF', strokeWidth: 2, r: 5 }}
         />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
       </LineChart>
     </div>
   )

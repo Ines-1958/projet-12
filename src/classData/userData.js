@@ -14,15 +14,6 @@ export class UserData {
   }
 }
 
-// export default async function getUser() {
-//   const response = await fetch('/datas/userData.json')
-//   console.log(response)
-//   const json = await response.json()
-//   console.log(json)
-//   console.log(json.data)
-//   console.log(json.data[1].id)
-//   return json.data
-// }
 export async function getUser() {
   const response = await fetch('/datas/userData.json')
   console.log(response)
@@ -54,10 +45,6 @@ export async function getUserPerformance(userId) {
   console.log(json)
   console.log(json.data)
 
-  // const userActivity = json.data.find((u) => u.id === id)
-  // console.log(userActivity)
-  // return userActivity.kind
-
   const userPerformance = json.data.find((u) => {
     console.log(typeof userId)
     console.log(typeof u.userId)
@@ -65,9 +52,9 @@ export async function getUserPerformance(userId) {
     return u.userId === +userId
   })
 
-  // const test = userActivity.kind.map()
-  console.log(userPerformance)
-  return userPerformance
+  console.log(userPerformance.data)
+  // return userPerformance.kind
+  return userPerformance.data
 }
 
 export async function getUserData(id) {
@@ -90,12 +77,7 @@ export async function getUserScore(id) {
     return u.id === +id
   })
 
-  // const userScore = json.data.find((user) => user.id === +id)
-  console.log(userScore)
-  // if (typeof user === undefined) {
-  //   return userScore.todayScore || userScore.score
-  // }
-  return userScore.todayScore * 100 || userScore.score * 100
+  return userScore.todayScore || userScore.score
 }
 
 export async function getUserAverageSessions(userId) {
@@ -104,6 +86,7 @@ export async function getUserAverageSessions(userId) {
 
   const user = json.data.find((u) => u.userId === +userId)
   console.log(user)
+  console.log(user.sessions)
 
   return user.sessions
 }

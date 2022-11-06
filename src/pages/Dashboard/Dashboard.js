@@ -6,6 +6,11 @@ import '../../classData/userData.js'
 import { getUserById, UserData } from '../../classData/userData.js'
 import Card from '../../components/Card/Card'
 import RadarChartActivity from '../../components/RadarChartActivity/RadarChartActivity'
+import RadialBarScore from '../../components/PieChartScore/PieChartScore'
+import LineChartActivity from '../../components/LineChartActivity/LineChartActivity'
+import BarChartActivity from '../../components/BarChartActivity/BarChartActivity'
+import Header from '../../components/Header/Header'
+import NavBar from '../../components/NavBar/NavBar'
 
 export default function Dashboard() {
   const { userId } = useParams()
@@ -24,18 +29,29 @@ export default function Dashboard() {
 
   return (
     <div>
+      <Header />
+      <NavBar />
       <div>
         <p className="welcome">
           <span>Bonjour</span>
           <span className="user-firstName">{dataUser}</span>
         </p>
-
         <p className="text">
           Félicitation ! Vous avez explosé vos objectifs hier 👏
         </p>
       </div>
-      <RadarChartActivity />
-      <Card />
+
+      <div className="components-container">
+        <div className="recharts-components">
+          <BarChartActivity />
+          <LineChartActivity />
+          <RadarChartActivity />
+          <RadialBarScore />
+        </div>
+        <div className="card-component">
+          <Card />
+        </div>
+      </div>
     </div>
   )
 }
