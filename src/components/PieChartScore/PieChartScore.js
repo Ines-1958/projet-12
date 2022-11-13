@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import '../../classData/userData'
 // import getUser, { userData } from '../../classData/userData'
 // import { getUser } from '../../classData/userData'
+import '../PieChartScore/PieChartScore.scss'
 import { getUserScore } from '../../classData/userData.js'
 import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts'
 
@@ -29,24 +30,33 @@ export default function PieChartScore(props) {
     },
   ]
   return (
-    <div className="radialbar-container">
-      <p>Score</p>
-      <p className="welcome">{scorePercent}% de votre objectif</p>
+    <div className="piechart-container">
+      <p className="piechart-title">Score</p>
+      <p className="piechart-score">
+        <span className="score-percent">{scorePercent}%</span>{' '}
+        <span className="score-text">
+          <br></br>de votre <br></br>objectif
+        </span>
+      </p>
 
-      <PieChart width={730} height={250}>
-        <Pie
-          endAngle={scoreDegree}
-          dataKey="value"
-          nameKey="name"
-          cx="50%"
-          cy="50%"
-          innerRadius={60}
-          outerRadius={70}
-          fill="#ff0000"
-          data={data}
-          startAngle={90}
-        />
-      </PieChart>
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            endAngle={scoreDegree}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            innerRadius={60}
+            outerRadius={70}
+            fill="#ff0000"
+            data={data}
+            startAngle={90}
+            cornerRadius={87}
+          />
+          {/* <Pie fill="#FFFFFF" /> */}
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   )
 }

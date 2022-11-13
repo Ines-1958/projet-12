@@ -12,6 +12,7 @@ import {
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis,
+  ResponsiveContainer,
 } from 'recharts'
 
 // const data = [
@@ -98,26 +99,37 @@ export default function RadarChartActivity() {
   console.log(formattedKind)
 
   return (
-    <div className="radar-chart">
-      <RadarChart
-        cx={300}
-        cy={250}
-        outerRadius={150}
-        width={500}
-        height={500}
-        data={formattedKind}
-      >
-        <PolarGrid radialLines={false} />
-        <PolarAngleAxis dataKey="kind" stroke="#FFFFFF" />
-        {/* <PolarRadiusAxis /> */}
-        <Radar
-          // name="Mike"
-          dataKey="value"
-          // stroke="#8884d8"
-          fill="rgba(255, 1, 1, 0.7)"
-          fillOpacity={0.6}
-        />
-      </RadarChart>
+    <div className="radar-chart-container">
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart
+          // cx={300}
+          // cy={250}
+          // outerRadius={150}
+
+          cx="50%"
+          cy="50%"
+          outerRadius="65%"
+          width={258}
+          height={300}
+          data={formattedKind}
+        >
+          <PolarGrid radialLines={false} />
+          <PolarAngleAxis
+            dataKey="kind"
+            stroke="#FFFFFF"
+            tick={{ fontSize: 12 }}
+            tickLine={false}
+          />
+          {/* <PolarRadiusAxis /> */}
+
+          <Radar
+            dataKey="value"
+            // stroke="#8884d8"
+            fill="rgba(255, 1, 1, 0.7)"
+            fillOpacity={0.6}
+          />
+        </RadarChart>
+      </ResponsiveContainer>
     </div>
   )
 }

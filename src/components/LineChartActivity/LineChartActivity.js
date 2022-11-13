@@ -62,50 +62,68 @@ export default function LineChartActivity() {
 
   return (
     <div className="line-chart">
-      <p>Durée moyenne des sessions</p>
+      <div className="line-chart-container">
+        <p className="linechart-title">
+          Durée moyenne des <br></br>sessions
+        </p>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            // width={500}
+            // height={300}
+            data={formattedDays}
+            // margin={{
+            //   top: 5,
+            //   right: 30,
+            //   left: 20,
+            //   bottom: 5,
+            // }}
+            // margin={{ top: 0, right: 16, bottom: 24, left: 16 }}
+            margin={{ top: 2, right: 20, bottom: 3, left: 20 }}
+          >
+            {/* <CartesianGrid strokeDasharray="3 3" /> */}
+            <XAxis
+              dataKey="day"
+              // tick={false}
+              axisLine={false}
+              // stroke="rgba(255, 255, 255, 0.6)"
 
-      <LineChart
-        width={500}
-        height={300}
-        data={formattedDays}
-        // margin={{
-        //   top: 5,
-        //   right: 30,
-        //   left: 20,
-        //   bottom: 5,
-        // }}
-        margin={{ top: 2, right: 20, bottom: 3, left: 20 }}
-      >
-        {/* <CartesianGrid strokeDasharray="3 3" /> */}
-        <XAxis
-          dataKey="day"
-          // tick={false}
-          axisLine={false}
-          stroke="#FFFFFF"
-          tickLine={false}
-          //   tick={{
-          //     fontSize: 12,
-          //     fontWeight: 500,
-          //   }}
-        />
-        <YAxis dataKey="sessionLength" hide={true} tickLine={false} />
-        <Tooltip
-          content={<CustomTooltip />}
-          // cursor={{ stroke: 'black' }}
-        />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="sessionLength"
-          stroke="#FFFFFF"
-          strokeWidth={2}
-          //   activeDot={{ r: 8 }}
-          active
-          dot={false}
-          activeDot={{ stroke: '#FFFFFF', strokeWidth: 2, r: 5 }}
-        />
-        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
-      </LineChart>
+              stroke="#FFFFFF"
+              tickLine={false}
+              tick={{
+                fontSize: 12,
+              }}
+              fillOpacity={0.5}
+            />
+            <YAxis
+              dataKey="sessionLength"
+              hide={true}
+              tickLine={false}
+              // domain={[10, "dataMax + 70"]}
+            />
+            <Tooltip
+              content={<CustomTooltip />}
+              // cursor={{ stroke: 'black' }}
+              wrapperStyle={{ outline: 'none' }}
+              cursor={{ stroke: 'rgba(0, 0, 0, 0.1)', strokeWidth: 79 }}
+            />
+            {/* <Legend /> */}
+            <Line
+              type="monotone"
+              dataKey="sessionLength"
+              // stroke="#FFFFFF"
+              stroke="rgba(255, 255, 255, 0.6)"
+              strokeWidth={2}
+              //   activeDot={{ r: 8 }}
+              active
+              dot={false}
+              activeDot={{ stroke: '#FFFFFF', strokeWidth: 2, r: 5 }}
+              // fillOpacity={0.1}
+              cornerRadius={50}
+            />
+            {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   )
 }

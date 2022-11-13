@@ -28,28 +28,30 @@ export default function Dashboard() {
   console.log(dataUser)
 
   return (
-    <div>
+    <div className="dashboard-container">
       <Header />
       <NavBar />
-      <div>
-        <p className="welcome">
-          <span>Bonjour</span>
-          <span className="user-firstName">{dataUser}</span>
-        </p>
-        <p className="text">
-          Félicitation ! Vous avez explosé vos objectifs hier 👏
-        </p>
-      </div>
-
-      <div className="components-container">
-        <div className="recharts-components">
-          <BarChartActivity />
-          <LineChartActivity />
-          <RadarChartActivity />
-          <RadialBarScore />
+      <div className="dashbord-content">
+        <div className="dashboard-title">
+          <p className="welcome">
+            <span>Bonjour</span>
+            <span className="user-firstName">{dataUser}</span>
+          </p>
+          <p className="text">
+            Félicitation ! Vous avez explosé vos objectifs hier 👏
+          </p>
         </div>
-        <div className="card-component">
-          <Card />
+
+        <div className="components-container">
+          <div className="recharts-components">
+            <BarChartActivity />
+            <LineChartActivity />
+            <RadarChartActivity />
+            <RadialBarScore />
+          </div>
+          <div className="card-component">
+            <Card />
+          </div>
         </div>
       </div>
     </div>

@@ -10,87 +10,14 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from 'recharts'
 
-const data = [
-  {
-    date: '2000-01',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    date: '2000-02',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    date: '2000-03',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    date: '2000-04',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    date: '2000-05',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    date: '2000-06',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    date: '2000-07',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    date: '2000-08',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    date: '2000-09',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    date: '2020-07-01',
-    uv: 80,
-    pv: 240,
-  },
-  {
-    date: '2000-11',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    date: '2000-12',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-]
+// const monthTickFormatter = (tick) => {
+//   const date = new Date(tick)
 
-const monthTickFormatter = (tick) => {
-  const date = new Date(tick)
-
-  return date.getMonth() + 1
-}
+//   return date.getMonth() + 1
+// }
 
 // const renderQuarterTick = (tickProps) => {
 //   const { x, y, payload } = tickProps
@@ -117,12 +44,6 @@ export default function BarChartActivity() {
   const { userId } = useParams()
   const [dataActivity, setDataActivity] = useState([])
 
-  //   useEffect(() => {
-  //     getUserActivity(userId).then((t) => setDataActivity(t))
-  //     console.log(getUserActivity)
-  //     console.log(dataActivity)
-  //   }, [])
-
   useEffect(() => {
     console.log(userId)
     getUserActivity(userId).then((users) => {
@@ -131,13 +52,7 @@ export default function BarChartActivity() {
   }, [])
 
   console.log(dataActivity)
-  //   const activityData = dataActivity.map((data, index) => {
-  //     return {
-  //       day: (index + 1).toString(),
-  //       'Poids kg': dataActivity.kilogram,
-  //       'Calories brûlées': dataActivity.calories,
-  //     }
-  //   })
+
   let Kcal = (cal) => {
     console.log(cal.calories)
     return cal.calories
@@ -176,7 +91,7 @@ export default function BarChartActivity() {
   })
 
   const renderColorfulLegendText = (value, entry) => {
-    const { color } = entry
+    // const { color } = entry
 
     return <span style={{ color: '#74798C' }}>{value}</span>
   }
@@ -198,83 +113,90 @@ export default function BarChartActivity() {
   return (
     <div className="barchart-container">
       <p className="barchart-title">Activité quotidienne</p>
-      <BarChart
-        width={500}
-        height={300}
-        //   data={data}
-        data={formattedDate}
-        //   margin={{
-        //     top: 5,
-        //     right: 30,
-        //     left: 20,
-        //     bottom: 5,
-        //   }}
-        margin={{
-          top: 25,
-          right: 0,
-          left: 20,
-          bottom: 5,
-        }}
-        //   barSize={7}
-        barGap={8}
-        barCategoryGap={18}
-      >
-        <CartesianGrid strokeDasharray="3 3" vertical={false} />
-        {/* <XAxis dataKey="date" tickFormatter={monthTickFormatter} /> */}
-        <XAxis
-          dataKey="day"
-          axisLine={false}
-          tickLine={false}
-          // interval={0}
-          // tick={renderQuarterTick}
-          //   height={70}
-          // scale="band"
-          // xAxisId="quarter"
-          style={{ fill: '#9B9EAC', fontSize: 14 }}
-        />
-        {/* <YAxis
+
+      <ResponsiveContainer width="100%" height={292}>
+        <BarChart
+          width={500}
+          height={300}
+          //   data={data}
+          data={formattedDate}
+          //   margin={{
+          //     top: 5,
+          //     right: 30,
+          //     left: 20,
+          //     bottom: 5,
+          //   }}
+          margin={{
+            top: 25,
+            right: 0,
+            left: 20,
+            bottom: 5,
+          }}
+          barSize={7}
+          barGap={8}
+          barCategoryGap={18}
+        >
+          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          {/* <XAxis dataKey="date" tickFormatter={monthTickFormatter} /> */}
+          <XAxis
+            dataKey="day"
+            axisLine={false}
+            tickLine={false}
+            // interval={0}
+            // tick={renderQuarterTick}
+            //   height={70}
+            // scale="band"
+            // xAxisId="quarter"
+            padding={{ left: -39, right: -39 }}
+            style={{ fill: '#9B9EAC', fontSize: 14 }}
+          />
+          {/* <YAxis
       //   yAxisId="kilogram" orientation={'right'}
       /> */}
-        <YAxis dataKey="calories" hide={true} />
-        <YAxis
-          yAxisId="kilogram"
-          orientation={'right'}
-          //   dataKey={Kg}
-          dataKey="kilogram"
-          domain={['dataMin -2', 'dataMax +1']}
-          // dx={15}
-          style={{ fill: '#9B9EAC', fontSize: 14 }}
-          tickCount="3"
-          // hide={false}
-          // type="number"
-          axisLine={false}
-          tickLine={false}
-        />
-        <Tooltip content={<CustomTooltip />} />
-        {/* <Legend /> */}
-        <Legend
-          align="right"
-          verticalAlign="top"
-          iconType="circle"
-          iconSize={8}
-          height={40}
-          formatter={renderColorfulLegendText}
-        />
-        {/* <Bar dataKey="pv" fill="#282D30" /> */}
-        <Bar
-          dataKey="kilogram"
-          fill="#282D30"
-          name="Poids (Kg)"
-          radius={[8, 8, 0, 0]}
-        />
-        {/* <Bar dataKey="uv" fill="#E60000" barSize={7} /> */}
-        <Bar
-          dataKey="calories"
-          fill="#E60000"
-          name="Calories brûlées (KCal)"
-          radius={[8, 8, 0, 0]}
-        />
-      </BarChart>
+          <YAxis dataKey="calories" hide={true} />
+          <YAxis
+            yAxisId="kilogram"
+            orientation={'right'}
+            //   dataKey={Kg}
+            dataKey="kilogram"
+            domain={['dataMin -2', 'dataMax +1']}
+            // dx={15}
+            style={{ fill: '#9B9EAC', fontSize: 14 }}
+            tickCount="3"
+            // hide={false}
+            // type="number"
+            axisLine={false}
+            tickLine={false}
+          />
+          <Tooltip
+            content={<CustomTooltip />}
+            wrapperStyle={{ outline: 'none' }}
+          />
+          {/* <Legend /> */}
+          <Legend
+            align="right"
+            verticalAlign="top"
+            iconType="circle"
+            iconSize={8}
+            height={40}
+            formatter={renderColorfulLegendText}
+          />
+          {/* <Bar dataKey="pv" fill="#282D30" /> */}
+          <Bar
+            dataKey="kilogram"
+            fill="#282D30"
+            name="Poids (Kg)"
+            radius={[8, 8, 0, 0]}
+          />
+          {/* <Bar dataKey="uv" fill="#E60000" barSize={7} /> */}
+          <Bar
+            dataKey="calories"
+            fill="#E60000"
+            name="Calories brûlées (KCal)"
+            radius={[8, 8, 0, 0]}
+          />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   )
 }

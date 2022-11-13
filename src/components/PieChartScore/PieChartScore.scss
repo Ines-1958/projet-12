@@ -1,1 +1,46 @@
+.piechart-container {
+  //   width: 258px;
+  width: 220px;
+  height: 263px;
+  background: #fbfbfb;
+  // background: green;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+  border-radius: 5px;
 
+  position: relative;
+  p {
+    &.piechart-title {
+      //   text-align: left;
+      //   padding: 24px 0 0 30px;
+      //   margin-left: 30px;
+      position: absolute;
+      top: 24px;
+      left: 30px;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 24px;
+      color: #20253a;
+    }
+    &.piechart-score {
+      color: #282d30;
+
+      position: absolute;
+      left: 32.17%;
+      right: 31.01%;
+      top: 40.75%;
+      bottom: 37.96%;
+
+      span {
+        &.score-percent {
+          font-weight: 700;
+          font-size: 26px;
+          line-height: 26px;
+        }
+
+        &.score-text {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

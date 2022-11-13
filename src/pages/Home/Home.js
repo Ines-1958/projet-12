@@ -43,17 +43,23 @@ export default function Home(props) {
       <Header />
       <NavBar />
 
-      <h1>Bienvenue chez SportSee</h1>
-      <p className="title-welcome">
-        Veuillez cliquer sur votre identifiant afin de vous connecter
-      </p>
-      <div className="user-card">
-        {user &&
-          user.map((user, index) => (
-            <NavLink key={index} className="user" to={`/dashboard/${user.id}`}>
-              Utilisateur {user.id}
-            </NavLink>
-          ))}
+      <div className="home-content">
+        <h1>Bienvenue chez SportSee</h1>
+        <p className="title-welcome">
+          Veuillez cliquer sur votre identifiant afin de vous connecter
+        </p>
+        <div className="user-card">
+          {user &&
+            user.map((user, index) => (
+              <NavLink
+                key={index}
+                className="user"
+                to={`/dashboard/${user.id}`}
+              >
+                Utilisateur {user.id}
+              </NavLink>
+            ))}
+        </div>
       </div>
     </div>
   )

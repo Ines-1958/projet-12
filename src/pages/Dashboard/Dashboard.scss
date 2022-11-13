@@ -1,37 +1,55 @@
-p {
-  color: #000000;
-  &.welcome {
-    span {
-      font-weight: bold;
-      font-size: 48px;
-      line-height: 24px;
+.dashboard-container {
+  .dashbord-content {
+    // width: 90%;
+    // margin: 2rem 8rem;
+    // margin-top: 2rem;
+    // margin-left: 8rem;
+    margin-left: 10%;
+    // padding: 1px 16px;
+    padding: 2rem 3rem;
+    // height: 1000px;
 
-      &.user-firstName {
-        color: #ff0101;
-        margin-left: 8px;
+    .dashboard-title {
+      p {
+        color: #000000;
+        &.welcome {
+          span {
+            font-weight: bold;
+            font-size: 48px;
+            line-height: 24px;
+
+            &.user-firstName {
+              color: #ff0101;
+              margin-left: 8px;
+            }
+          }
+        }
+
+        &.text {
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 24px;
+          margin: 2rem 0 4rem;
+        }
       }
     }
-  }
 
-  &.text {
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-  }
-}
+    .components-container {
+      display: flex;
+      // margin: 10px 150px;
 
-.components-container {
-  display: flex;
-  margin: 10px 150px;
+      .recharts-components {
+        // flex-direction: row;
 
-  .recharts-components {
-    // display: flex;
-    // flex-direction: row;
-    // // flex-wrap: wrap;
-    // width: 50%;
-  }
+        // width: 50%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
 
-  .card-component {
-    // width: 100%;
+      .card-component {
+        // width: 100%;
+      }
+    }
   }
 }
