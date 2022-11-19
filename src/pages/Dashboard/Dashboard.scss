@@ -1,55 +1,123 @@
 .dashboard-container {
+  // position: relative;
   .dashbord-content {
     // width: 90%;
     // margin: 2rem 8rem;
     // margin-top: 2rem;
     // margin-left: 8rem;
-    margin-left: 10%;
-    // padding: 1px 16px;
-    padding: 2rem 3rem;
-    // height: 1000px;
+    display: flex;
+    @media only screen and (max-width: 780px) {
+      gap: 10px;
+    }
 
-    .dashboard-title {
-      p {
-        color: #000000;
-        &.welcome {
-          span {
-            font-weight: bold;
-            font-size: 48px;
+    // margin-left: 10%;
+    // padding: 2rem 3rem;
+    .dashboard {
+      padding: 2rem 3rem;
+
+      @media only screen and (max-width: 780px) {
+        padding: 2rem 0;
+      }
+
+      .dashboard-title {
+        p {
+          color: #000000;
+          &.welcome {
+            span {
+              font-weight: bold;
+              font-size: 48px;
+              line-height: 24px;
+
+              &.user-firstName {
+                color: #ff0101;
+                margin-left: 8px;
+              }
+            }
+          }
+
+          &.text {
+            font-weight: 400;
+            font-size: 18px;
             line-height: 24px;
+            margin: 2rem 0 4rem;
+          }
+        }
+      }
 
-            &.user-firstName {
-              color: #ff0101;
-              margin-left: 8px;
+      .components-container {
+        display: flex;
+        // margin: 10px 150px;
+        gap: 1.5rem;
+        .recharts-components {
+          // flex-direction: row;
+
+          width: 100%;
+          display: flex;
+          // flex-wrap: wrap;
+          gap: 10px;
+
+          .chart-content {
+            width: 14rem;
+            height: 14rem;
+            // width: 33%;
+            // height: 13rem;
+            // max-width: 12rem;
+            @media only screen and (max-width: 780px) {
+              width: 10rem;
+              height: 12rem;
+            }
+            @media only screen and (min-width: 781px) and (max-width: 1025px) {
+              width: 12rem;
+              height: 12rem;
             }
           }
         }
 
-        &.text {
-          font-weight: 400;
-          font-size: 18px;
-          line-height: 24px;
-          margin: 2rem 0 4rem;
+        .card-component {
+          // width: 100%;
         }
       }
     }
-
-    .components-container {
-      display: flex;
-      // margin: 10px 150px;
-
-      .recharts-components {
-        // flex-direction: row;
-
-        // width: 50%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .card-component {
-        // width: 100%;
-      }
-    }
   }
+}
+
+// @media all and (min-width: 780px) and (max-width: 1025px) {
+//   .dashboard-container {
+//     .dashbord-content {
+//       .dashboard {
+//         .dashboard-title {
+//           p {
+//             &.welcome {
+//               span {
+//                 &.user-firstName {
+//                 }
+//               }
+//             }
+
+//             &.text {
+//             }
+//           }
+//         }
+
+//         .components-container {
+//           .recharts-components {
+//             gap: 0.5rem;
+//             // width: initial;
+//             // width: 100%;
+//             // .chart-content.piechart-container.radar-chart-container.line-chart {
+//             //   width: 12rem;
+//             //   height: 12rem;
+//             // }
+//           }
+
+//           .card-component {
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+@media only screen and (min-width: 780px) {
+}
+@media only screen and (min-width: 781px) and (max-width: 1025px) {
 }

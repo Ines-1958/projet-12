@@ -9,18 +9,21 @@ import RadarChartActivity from './components/RadarChartActivity/RadarChartActivi
 import Card from './components/Card/Card'
 import LineChartActivity from './components/LineChartActivity/LineChartActivity'
 import BarChartActivity from './components/BarChartActivity/BarChartActivity'
+// import FetchData from './API/fetchData'
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard/:userId" element={<Dashboard />} />
+        {/* <Route path="/dashboard/:userId" element={<Dashboard />} /> */}
+        <Route path="/user/:userId" element={<Dashboard />} />
         <Route path="/piechart/:userId" element={<PieChartScore />} />
         <Route path="/radarchart/:userId" element={<RadarChartActivity />} />
         <Route path="/card/:userId" element={<Card />} />
         <Route path="/linechart/:userId" element={<LineChartActivity />} />
         <Route path="/barchart/:userId" element={<BarChartActivity />} />
+        {/* <Route path="user/:userId" element={<FetchData />} /> */}
       </Routes>
     </div>
   )

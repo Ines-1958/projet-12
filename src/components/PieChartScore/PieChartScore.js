@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import '../../classData/userData'
-// import getUser, { userData } from '../../classData/userData'
-// import { getUser } from '../../classData/userData'
+import '../../service/mock/userData'
+
 import '../PieChartScore/PieChartScore.scss'
-import { getUserScore } from '../../classData/userData.js'
+// import { getUserScore } from '../../service/mock/userData.js'
+import { getUserScore } from '../../service/API/fetchData'
 import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts'
 
 export default function PieChartScore(props) {
@@ -21,7 +21,7 @@ export default function PieChartScore(props) {
       setScoreDegree(score * 360 + 90)
     })
 
-    console.log(score)
+    // console.log(score)
   })
   const data = [
     {
@@ -30,7 +30,7 @@ export default function PieChartScore(props) {
     },
   ]
   return (
-    <div className="piechart-container">
+    <div className="piechart-container chart-content">
       <p className="piechart-title">Score</p>
       <p className="piechart-score">
         <span className="score-percent">{scorePercent}%</span>{' '}

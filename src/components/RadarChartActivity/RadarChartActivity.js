@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import '../RadarChartActivity/RadarChartActivity.scss'
-import '../../classData/userData.js'
-// import getUserActivity, { UserData } from '../../classData/userData'
-import { getUserPerformance } from '../../classData/userData.js'
-import { UserData } from '../../classData/userData.js'
+import '../../service/mock/userData.js'
+import { getUserPerformance } from '../../service/API/fetchData'
+// import { getUserPerformance } from '../../service/mock/userData.js'
 
 import {
   Radar,
@@ -57,7 +56,7 @@ import {
 
 export default function RadarChartActivity() {
   const { userId } = useParams()
-  console.log(userId)
+  // console.log(userId)
 
   const [activity, setActivity] = useState([])
 
@@ -69,14 +68,14 @@ export default function RadarChartActivity() {
 
   useEffect(() => {
     getUserPerformance(userId).then((t) => setActivity(t))
-    console.log(getUserPerformance)
-    console.log(activity)
+    // console.log(getUserPerformance)
+    // console.log(activity)
   }, [])
 
-  console.log(activity)
+  // console.log(activity)
 
   const test = Object.entries(activity)
-  console.log(test)
+  // console.log(test)
 
   const formattedKind = activity.map((data) => {
     switch (data.kind) {
@@ -96,10 +95,10 @@ export default function RadarChartActivity() {
         return { ...data }
     }
   })
-  console.log(formattedKind)
+  // console.log(formattedKind)
 
   return (
-    <div className="radar-chart-container">
+    <div className="radar-chart-container chart-content">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart
           // cx={300}
@@ -109,15 +108,15 @@ export default function RadarChartActivity() {
           cx="50%"
           cy="50%"
           outerRadius="65%"
-          width={258}
-          height={300}
+          // width={258}
+          // height={300}
           data={formattedKind}
         >
           <PolarGrid radialLines={false} />
           <PolarAngleAxis
             dataKey="kind"
             stroke="#FFFFFF"
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 11 }}
             tickLine={false}
           />
           {/* <PolarRadiusAxis /> */}

@@ -1,14 +1,17 @@
 .data-container {
   display: flex;
   flex-direction: column;
-  gap: 39px;
+  // gap: 39px;
+  gap: 1rem;
   .data-content {
     display: flex;
-    gap: 24px;
+    // gap: 24px;
     background: #fbfbfb;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
     border-radius: 5px;
-    padding: 32px;
+    // padding: 32px;
+    gap: 1rem;
+    padding: 1rem;
 
     img {
       width: 60px;

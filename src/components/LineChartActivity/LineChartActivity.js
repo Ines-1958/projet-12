@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import '../LineChartActivity/LineChartActivity.scss'
-import { getUserAverageSessions } from '../../classData/userData.js'
+// import { getUserAverageSessions } from '../../service/mock/userData.js'
+import { getUserAverageSessions } from '../../service/API/fetchData'
 import {
   LineChart,
   Line,
@@ -15,10 +16,10 @@ import {
 
 export default function LineChartActivity() {
   const { userId } = useParams()
-  console.log(userId)
+  // console.log(userId)
 
   const [sessions, setSessions] = useState([])
-  console.log(sessions)
+  // console.log(sessions)
 
   useEffect(() => {
     getUserAverageSessions(userId).then((users) => {
@@ -38,7 +39,7 @@ export default function LineChartActivity() {
     return null
   }
 
-  console.log(sessions)
+  // console.log(sessions)
   let formattedDays = sessions.map((data) => {
     switch (data.day) {
       case 1:
@@ -61,7 +62,7 @@ export default function LineChartActivity() {
   })
 
   return (
-    <div className="line-chart">
+    <div className="line-chart chart-content">
       <div className="line-chart-container">
         <p className="linechart-title">
           Durée moyenne des <br></br>sessions

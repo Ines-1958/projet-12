@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../BarChartActivity/BarChartActivity.scss'
-import { getUserActivity, UserData } from '../../classData/userData.js'
+// import { getUserActivity} from '../../service/mock/userData.js'
+import { getUserActivity } from '../../service/API/fetchData'
 import { useParams } from 'react-router-dom'
 import {
   BarChart,
@@ -45,18 +46,18 @@ export default function BarChartActivity() {
   const [dataActivity, setDataActivity] = useState([])
 
   useEffect(() => {
-    console.log(userId)
+    // console.log(userId)
     getUserActivity(userId).then((users) => {
       setDataActivity(users)
     })
   }, [])
 
-  console.log(dataActivity)
+  // console.log(dataActivity)
 
-  let Kcal = (cal) => {
-    console.log(cal.calories)
-    return cal.calories
-  }
+  // let Kcal = (cal) => {
+  //   console.log(cal.calories)
+  //   return cal.calories
+  // }
   //   console.log(Kcal)
   //   function Kcal(c) {
   //     console.log(c.calories)
@@ -64,10 +65,10 @@ export default function BarChartActivity() {
   //     // return c.calories
   //   }
 
-  let Kg = (K) => {
-    return K.kilogram
-  }
-  console.log(Kg)
+  // let Kg = (K) => {
+  //   return K.kilogram
+  // }
+  // console.log(Kg)
 
   const formattedDate = dataActivity.map((data, index) => {
     switch (new Date(data.day).getDate()) {
@@ -114,7 +115,7 @@ export default function BarChartActivity() {
     <div className="barchart-container">
       <p className="barchart-title">Activité quotidienne</p>
 
-      <ResponsiveContainer width="100%" height={292}>
+      <ResponsiveContainer width="100%" height={200}>
         <BarChart
           width={500}
           height={300}

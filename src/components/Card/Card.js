@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getUserData, UserData } from '../../classData/userData.js'
+import { getUserData, UserData } from '../../service/mock/userData.js'
 import '../Card/Card.scss'
 import caloriesIcon from '../../assets/caloriesIcon.png'
 import carbsIcon from '../../assets/carbsIcon.png'
@@ -9,20 +9,20 @@ import proteinIcon from '../../assets/proteinIcon.png'
 
 export default function Card() {
   const { userId } = useParams()
-  console.log(userId)
+  // console.log(userId)
 
   const [datas, setDatas] = useState('')
-  console.log(datas)
+  // console.log(datas)
 
   useEffect(() => {
-    console.log(userId)
+    // console.log(userId)
     getUserData(userId).then((users) => {
       setDatas(users)
       console.log(datas)
     })
-    console.log(datas)
+    // console.log(datas)
   }, [])
-  console.log(datas)
+  // console.log(datas)
 
   return (
     <div className="data-container">
