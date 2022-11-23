@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Projet 12 - SportSee
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+SportSee is a startup dedicated to sports coaching.
+This project is part of a new version of the user's profile page, which will allow him to follow the number of sessions carried out as well as the number of calories burned.
 
-## Available Scripts
+### 1. Prerequisites
+  - NodeJS
+  - Yarn (or npm)
 
-In the project directory, you can run:
+### 2. Installation
 
-### `npm start`
+You have the choice between yarn and npm
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 2.1 Backend API
+Clone the repository https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard.git on your computer.
+This will allow access to the API locally, which is useful for the operation of this project.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  - The yarn command will allow you to install the dependencies.
+  - The yarn dev command will allow you to run the micro API.
 
-### `npm test`
+### 2.2 Front APP
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone the https://github.com/Ines-1958/project-12.git repository locally.
+  - Open a new terminal and install the node_modules via the npm install command.
+  - In order to launch the project on your browser, type the command npm start
 
-### `npm run build`
+### 3. Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The current data are those from the API; to swap with the mocked data, simply comment out the path from the api and uncomment the one from the mock; for example in the dashboard, the import { getUserById } from '../../service/API/fetchData' refers to the user by his id via the api and for the mock, import { getUserById } from '.. /../service/mock/userData.js'.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 4. Endpoints
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 4.1 Possible endpoints
 
-### `npm run eject`
+**There are four possible endpoints to retrieve data from the API**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  - http://localhost:3000/user/${userId} - retrieves information from a user. This first endpoint includes the user id, user information (first name, last name and age), the current day's score (todayScore) and key data (calorie, macronutrient, etc.).
+  - http://localhost:3000/user/${userId}/activity - retrieves a user's activity day by day with kilograms and calories.
+  - http://localhost:3000/user/${userId}/average-sessions - retrieves the average sessions of a user per day. The week starts on Monday.
+  - http://localhost:3000/user/${userId}/performance - retrieves a user's performance (energy, endurance, etc.).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 4.2 Queries
+  
+  **Currently only two users have been mocked. They have userId 12 and 18 respectively.**
+  
+  Here are some sample queries
+  - http://localhost:3000/user/12/performance - Retrieves the performance of the user with id 12
+  - http://localhost:3000/user/18 - Retrieves user 18's main information.
+  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 5. Author
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Inès MASSA, student at Openclassrooms
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
