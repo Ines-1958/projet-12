@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import '../RadarChartActivity/RadarChartActivity.scss'
 import '../../service/mock/userData.js'
 import { getUserPerformance } from '../../service/API/fetchData'
@@ -14,57 +14,15 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-// const data = [
-//   {
-//     subject: 'Intensité',
-//     A: 120,
-//     B: 110,
-//     fullMark: 150,
-//   },
-//   {
-//     subject: 'Vitesse',
-//     A: 98,
-//     B: 130,
-//     fullMark: 150,
-//   },
-//   {
-//     subject: 'Force',
-//     A: 86,
-//     B: 130,
-//     fullMark: 150,
-//   },
-//   {
-//     subject: 'Endurance',
-//     A: 99,
-//     B: 100,
-//     fullMark: 150,
-//   },
-//   {
-//     subject: 'Energie',
-//     A: 85,
-//     B: 90,
-//     fullMark: 150,
-//   },
-//   {
-//     subject: 'Cardio',
-//     A: 65,
-//     B: 85,
-//     fullMark: 150,
-//   },
-// ]
-// const test = 'http://localhost:3000/user/${userId}/activity'
-
+/**
+ * Creation of the component that renders the Radarchart
+ * @returns radarchart from the user's performance data
+ */
 export default function RadarChartActivity() {
   const { userId } = useParams()
   // console.log(userId)
 
   const [activity, setActivity] = useState([])
-
-  //   const userPerformance = async () => {
-  //     const donnees = new UserData(userId)
-  //     await donnees.getUserActivity()
-  //   }
-  //   console.log(userPerformance)
 
   useEffect(() => {
     getUserPerformance(userId).then((t) => setActivity(t))
@@ -74,10 +32,14 @@ export default function RadarChartActivity() {
 
   // console.log(activity)
 
-  const test = Object.entries(activity)
-  // console.log(test)
-
+  /**
+   * Translates the value of kind from English to French
+   *
+   * @returns {{value: number, kind: string}} the value of the kind in French
+   */
   const formattedKind = activity.map((data) => {
+    // console.log(data)
+    console.log(data.kind)
     switch (data.kind) {
       case 1:
         return { ...data, kind: 'Intensité' }
@@ -95,7 +57,7 @@ export default function RadarChartActivity() {
         return { ...data }
     }
   })
-  // console.log(formattedKind)
+  console.log(formattedKind)
 
   return (
     <div className="radar-chart-container chart-content">
@@ -111,6 +73,8 @@ export default function RadarChartActivity() {
           // width={258}
           // height={300}
           data={formattedKind}
+          // padding={{ left: -10, right: -30 }}
+          // padding={{ left: -10 }}
         >
           <PolarGrid radialLines={false} />
           <PolarAngleAxis

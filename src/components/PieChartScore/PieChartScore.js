@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import '../../service/mock/userData'
-
 import '../PieChartScore/PieChartScore.scss'
 // import { getUserScore } from '../../service/mock/userData.js'
 import { getUserScore } from '../../service/API/fetchData'
-import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts'
+import { PieChart, Pie, ResponsiveContainer } from 'recharts'
 
-export default function PieChartScore(props) {
+/**
+ * Creation of the component that renders the Piechart
+ * @returns piechart with user score data
+ */
+export default function PieChartScore() {
   const { userId } = useParams()
 
   const [score, setScore] = useState('')

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import '../Dashboard/Dashboard.scss'
 import '../../service/mock/userData.js'
-// import getUser, { UserData } from '../../classData/userData'
 // import { getUserById } from '../../service/mock/userData.js'
 import { getUserById } from '../../service/API/fetchData'
 import Card from '../../components/Card/Card'
@@ -13,6 +12,10 @@ import BarChartActivity from '../../components/BarChartActivity/BarChartActivity
 import Header from '../../components/Header/Header'
 import NavBar from '../../components/NavBar/NavBar'
 
+/**
+ * renders the main content of the app (all user data)
+ * @returns dashboard component
+ */
 export default function Dashboard() {
   const { userId } = useParams()
 

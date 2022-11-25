@@ -14,33 +14,10 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-// const monthTickFormatter = (tick) => {
-//   const date = new Date(tick)
-
-//   return date.getMonth() + 1
-// }
-
-// const renderQuarterTick = (tickProps) => {
-//   const { x, y, payload } = tickProps
-//   const { value, offset } = payload
-//   const date = new Date(value)
-//   const month = date.getMonth()
-//   const quarterNo = Math.floor(month / 3) + 1
-
-//   if (month % 3 === 1) {
-//     return <text x={x} y={y - 4} textAnchor="middle">{`Q${quarterNo}`}</text>
-//   }
-
-//   const isLast = month === 11
-
-//   if (month % 3 === 0 || isLast) {
-//     const pathX = Math.floor(isLast ? x + offset : x - offset) + 0.5
-
-//     return <path d={`M${pathX},${y - 4}v${-35}`} stroke="red" />
-//   }
-//   return null
-// }
-
+/**
+ * Creation of the Barchart with recharts
+ * @returns the barchart with the user's daily activity
+ */
 export default function BarChartActivity() {
   const { userId } = useParams()
   const [dataActivity, setDataActivity] = useState([])
@@ -70,6 +47,10 @@ export default function BarChartActivity() {
   // }
   // console.log(Kg)
 
+  /**
+   * Converting dates to days of the week
+   * @returns {{day: number, kilogram: number, calories: number}}
+   */
   const formattedDate = dataActivity.map((data, index) => {
     switch (new Date(data.day).getDate()) {
       case 1:
@@ -90,19 +71,27 @@ export default function BarChartActivity() {
         return { ...data }
     }
   })
+  console.log(formattedDate)
 
-  const renderColorfulLegendText = (value, entry) => {
-    // const { color } = entry
-
+  /**
+   * Legend text color customization
+   * @param { string } value
+   * @returns legend text color customized
+   */
+  const renderColorfulLegendText = (value) => {
     return <span style={{ color: '#74798C' }}>{value}</span>
   }
 
+  /**
+   * Tooltip customization
+   * @param {*} param0
+   * @returns the customized tooltip with the data displayed in Kg and Kcal
+   */
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
         <div className="custom-tooltip">
           <p className="label">{` ${payload[0].value} kg`}</p>
-          {/* <p className="intro">{getIntroOfPage(label)}</p> */}
           <p className="label">{`${payload[1].value} Kcal`}</p>
         </div>
       )
@@ -148,7 +137,7 @@ export default function BarChartActivity() {
             //   height={70}
             // scale="band"
             // xAxisId="quarter"
-            padding={{ left: -39, right: -39 }}
+            padding={{ left: -30, right: -30 }}
             style={{ fill: '#9B9EAC', fontSize: 14 }}
           />
           {/* <YAxis

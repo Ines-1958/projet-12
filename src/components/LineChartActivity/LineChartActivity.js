@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import '../LineChartActivity/LineChartActivity.scss'
 // import { getUserAverageSessions } from '../../service/mock/userData.js'
 import { getUserAverageSessions } from '../../service/API/fetchData'
@@ -14,6 +14,10 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
+/**
+ * Creation of the component that renders the Linechart with recharts
+ * @returns  linechart with user average sessions data
+ */
 export default function LineChartActivity() {
   const { userId } = useParams()
   // console.log(userId)
@@ -27,6 +31,11 @@ export default function LineChartActivity() {
     })
   }, [])
 
+  /**
+   * Tooltip customization
+   * @param {*} param0
+   * @returns the customized tooltip with the data displayed in min
+   */
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -40,7 +49,14 @@ export default function LineChartActivity() {
   }
 
   // console.log(sessions)
+
+  /**
+   * Converting day key value from number to string (weekday initials)
+   * @returns {{day: string, sessionLength: number}}
+   */
   let formattedDays = sessions.map((data) => {
+    console.log(data)
+    console.log(data.day)
     switch (data.day) {
       case 1:
         return { ...data, day: 'L' }
@@ -60,6 +76,7 @@ export default function LineChartActivity() {
         return { ...data }
     }
   })
+  console.log(formattedDays)
 
   return (
     <div className="line-chart chart-content">

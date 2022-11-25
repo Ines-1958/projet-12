@@ -8,16 +8,29 @@
   //   width: 100%;
   //   position: fixed;
 
+  @media only screen and (max-width: 780px) {
+    padding: 0.5rem;
+  }
+
   img.logo-header {
-    width: 178px;
+    // width: 178px;
+    width: 11rem;
     // height: 60px;
+    @media only screen and (max-width: 780px) {
+      width: 8rem;
+    }
   }
 
   a {
     text-decoration: none;
     color: #ffffff;
     font-weight: 500;
-    font-size: 24px;
+    // font-size: 24px;
+    font-size: 1.5rem;
     line-height: 24px;
+
+    @media only screen and (max-width: 780px) {
+      font-size: 0.9rem;
+    }
   }
 }
