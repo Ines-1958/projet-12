@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import '../Dashboard/Dashboard.scss'
-import '../../service/mock/userData.js'
 // import { getUserById } from '../../service/mock/userData.js'
 import { getUserById } from '../../service/API/fetchData'
 import Card from '../../components/Card/Card'
@@ -22,13 +21,10 @@ export default function Dashboard() {
   const [dataUser, setDataUser] = useState('')
 
   useEffect(() => {
-    // console.log(userId)
     getUserById(userId).then((users) => {
       setDataUser(users)
     })
   })
-
-  // console.log(dataUser)
 
   return (
     <div className="dashboard-container">

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+//Mocked data
 // import { getUserData } from '../../service/mock/userData.js'
+
+//Api data
 import { getUserData } from '../../service/API/fetchData'
+
 import '../Card/Card.scss'
 import caloriesIcon from '../../assets/caloriesIcon.png'
 import carbsIcon from '../../assets/carbsIcon.png'
@@ -20,7 +24,6 @@ export default function Card() {
   useEffect(() => {
     getUserData(userId).then((users) => {
       setDatas(users)
-      console.log(datas)
     })
   }, [])
 

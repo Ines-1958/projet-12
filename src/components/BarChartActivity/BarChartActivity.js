@@ -23,29 +23,10 @@ export default function BarChartActivity() {
   const [dataActivity, setDataActivity] = useState([])
 
   useEffect(() => {
-    // console.log(userId)
     getUserActivity(userId).then((users) => {
       setDataActivity(users)
     })
   }, [])
-
-  // console.log(dataActivity)
-
-  // let Kcal = (cal) => {
-  //   console.log(cal.calories)
-  //   return cal.calories
-  // }
-  //   console.log(Kcal)
-  //   function Kcal(c) {
-  //     console.log(c.calories)
-  //     console.log(c)
-  //     // return c.calories
-  //   }
-
-  // let Kg = (K) => {
-  //   return K.kilogram
-  // }
-  // console.log(Kg)
 
   /**
    * Converting dates to days of the week
@@ -71,7 +52,6 @@ export default function BarChartActivity() {
         return { ...data }
     }
   })
-  console.log(formattedDate)
 
   /**
    * Legend text color customization
@@ -103,86 +83,67 @@ export default function BarChartActivity() {
   return (
     <div className="barchart-container">
       <p className="barchart-title">Activité quotidienne</p>
-
-      <ResponsiveContainer width="100%" height={200}>
+      <ResponsiveContainer width="100%" height="100%" aspect={600 / 150}>
         <BarChart
-          width={500}
-          height={300}
-          //   data={data}
           data={formattedDate}
-          //   margin={{
-          //     top: 5,
-          //     right: 30,
-          //     left: 20,
-          //     bottom: 5,
-          //   }}
+          barSize={7}
+          barGap={8}
+          barCategoryGap={18}
+          style={{
+            padding: '20px',
+            overflow: 'visible',
+            height: 'auto',
+          }}
           margin={{
             top: 25,
             right: 0,
             left: 20,
             bottom: 5,
           }}
-          barSize={7}
-          barGap={8}
-          barCategoryGap={18}
         >
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          {/* <XAxis dataKey="date" tickFormatter={monthTickFormatter} /> */}
+          <CartesianGrid vertical={false} strokeDasharray="1 1" />
           <XAxis
             dataKey="day"
             axisLine={false}
             tickLine={false}
-            // interval={0}
-            // tick={renderQuarterTick}
-            //   height={70}
-            // scale="band"
-            // xAxisId="quarter"
-            padding={{ left: -30, right: -30 }}
+            tickMargin={10}
+            padding={{ left: -30, right: -20 }}
             style={{ fill: '#9B9EAC', fontSize: 14 }}
           />
-          {/* <YAxis
-      //   yAxisId="kilogram" orientation={'right'}
-      /> */}
-          <YAxis dataKey="calories" hide={true} />
+          <YAxis yAxisId="left" dataKey="calories" hide={true} />
           <YAxis
-            yAxisId="kilogram"
+            yAxisId="right"
             orientation={'right'}
-            //   dataKey={Kg}
             dataKey="kilogram"
-            domain={['dataMin -2', 'dataMax +1']}
-            // dx={15}
-            style={{ fill: '#9B9EAC', fontSize: 14 }}
-            tickCount="3"
-            // hide={false}
-            // type="number"
+            tickCount={3}
             axisLine={false}
             tickLine={false}
+            style={{ fill: '#9B9EAC', fontSize: 14 }}
+            domain={['dataMin -2', 'dataMax +1']}
           />
           <Tooltip
             content={<CustomTooltip />}
             wrapperStyle={{ outline: 'none' }}
           />
-          {/* <Legend /> */}
           <Legend
             align="right"
             verticalAlign="top"
             iconType="circle"
             iconSize={8}
-            height={40}
             formatter={renderColorfulLegendText}
           />
-          {/* <Bar dataKey="pv" fill="#282D30" /> */}
           <Bar
             dataKey="kilogram"
+            yAxisId="right"
             fill="#282D30"
-            name="Poids (Kg)"
+            name="Poids (kg)"
             radius={[8, 8, 0, 0]}
           />
-          {/* <Bar dataKey="uv" fill="#E60000" barSize={7} /> */}
           <Bar
             dataKey="calories"
+            yAxisId="left"
             fill="#E60000"
-            name="Calories brûlées (KCal)"
+            name="Calories brulées (kCal)"
             radius={[8, 8, 0, 0]}
           />
         </BarChart>

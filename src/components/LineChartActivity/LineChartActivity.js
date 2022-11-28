@@ -8,9 +8,7 @@ import {
   Line,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from 'recharts'
 
@@ -20,10 +18,8 @@ import {
  */
 export default function LineChartActivity() {
   const { userId } = useParams()
-  // console.log(userId)
 
   const [sessions, setSessions] = useState([])
-  // console.log(sessions)
 
   useEffect(() => {
     getUserAverageSessions(userId).then((users) => {
@@ -48,15 +44,11 @@ export default function LineChartActivity() {
     return null
   }
 
-  // console.log(sessions)
-
   /**
    * Converting day key value from number to string (weekday initials)
    * @returns {{day: string, sessionLength: number}}
    */
   let formattedDays = sessions.map((data) => {
-    console.log(data)
-    console.log(data.day)
     switch (data.day) {
       case 1:
         return { ...data, day: 'L' }
@@ -76,7 +68,6 @@ export default function LineChartActivity() {
         return { ...data }
     }
   })
-  console.log(formattedDays)
 
   return (
     <div className="line-chart chart-content">
@@ -86,25 +77,12 @@ export default function LineChartActivity() {
         </p>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
-            // width={500}
-            // height={300}
             data={formattedDays}
-            // margin={{
-            //   top: 5,
-            //   right: 30,
-            //   left: 20,
-            //   bottom: 5,
-            // }}
-            // margin={{ top: 0, right: 16, bottom: 24, left: 16 }}
-            margin={{ top: 2, right: 20, bottom: 3, left: 20 }}
+            margin={{ top: 6, right: 20, bottom: 3, left: 20 }}
           >
-            {/* <CartesianGrid strokeDasharray="3 3" /> */}
             <XAxis
               dataKey="day"
-              // tick={false}
               axisLine={false}
-              // stroke="rgba(255, 255, 255, 0.6)"
-
               stroke="#FFFFFF"
               tickLine={false}
               tick={{
@@ -112,33 +90,21 @@ export default function LineChartActivity() {
               }}
               fillOpacity={0.5}
             />
-            <YAxis
-              dataKey="sessionLength"
-              hide={true}
-              tickLine={false}
-              // domain={[10, "dataMax + 70"]}
-            />
+            <YAxis dataKey="sessionLength" hide={true} tickLine={false} />
             <Tooltip
               content={<CustomTooltip />}
-              // cursor={{ stroke: 'black' }}
               wrapperStyle={{ outline: 'none' }}
               cursor={{ stroke: 'rgba(0, 0, 0, 0.1)', strokeWidth: 79 }}
             />
-            {/* <Legend /> */}
+
             <Line
               type="monotone"
               dataKey="sessionLength"
-              // stroke="#FFFFFF"
               stroke="rgba(255, 255, 255, 0.6)"
               strokeWidth={2}
-              //   activeDot={{ r: 8 }}
-              active
               dot={false}
-              activeDot={{ stroke: '#FFFFFF', strokeWidth: 2, r: 5 }}
-              // fillOpacity={0.1}
-              cornerRadius={50}
+              activeDot={{ fill: '#FFFFFF', r: 5 }}
             />
-            {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
           </LineChart>
         </ResponsiveContainer>
       </div>

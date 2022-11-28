@@ -7,7 +7,6 @@ span {
   padding: 4px;
   font-style: normal;
   font-weight: 500;
-  //   border: none;
   outline: none;
   p {
     &.label {
@@ -20,39 +19,31 @@ span {
 }
 
 .barchart-container {
-  // width: 500px;
-  // width: 98%;
-  background: #fbfbfb;
-  // width: 620px;
-  // height: 292px;
-  @media only screen and (max-width: 780px) {
-    width: 497px;
-  }
-
-  margin-bottom: 0.5rem;
-  // height: 15rem;
-  // width: 50%;
-  // background: yellow;
+  // background: #fbfbfb;
+  margin-bottom: 1rem;
+  background: yellow;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
   border-radius: 5px;
   position: relative;
 
+  @media only screen and (max-width: 780px) {
+    width: 497px;
+  }
+
   p {
     &.barchart-title {
-      //   position: absolute;
-      //   height: 24px;
-      //   left: 3.83%;
-      //   right: 80%;
-      //   top: calc(50% - 24px / 2 - 124px);
       text-align: left;
       font-weight: 500;
       font-size: 15px;
       line-height: 24px;
       color: #20253a;
-
       position: absolute;
       top: 24px;
       left: 32px;
     }
   }
+}
+
+.recharts-wrapper .recharts-cartesian-grid-horizontal line:first-child {
+  stroke-dasharray: 0;
 }

@@ -21,7 +21,6 @@ export async function getUserById(userId) {
  * @returns {Promise<number>}
  */
 export async function getUserScore(userId) {
-  console.log(typeof userId)
   const response = await fetch(`http://localhost:3000/user/${userId}`)
   const json = await response.json()
 
@@ -36,7 +35,6 @@ export async function getUserScore(userId) {
  * @returns {Promise<{value: number, kind: number}[]>}
  */
 export async function getUserPerformance(userId) {
-  console.log(typeof userId)
   const response = await fetch(
     `http://localhost:3000/user/${userId}/performance`
   )
@@ -54,7 +52,6 @@ export async function getUserPerformance(userId) {
  * @returns {Promise<{day: number, sessionLength: number}[]>} an array of objects containing the average user sessions
  */
 export async function getUserAverageSessions(userId) {
-  console.log(typeof userId)
   const response = await fetch(
     `http://localhost:3000/user/${userId}/average-sessions`
   )
@@ -71,7 +68,6 @@ export async function getUserAverageSessions(userId) {
  * @returns {Promise<{day: string, kilogram: number, calories: number}[]>} information about user activity
  */
 export async function getUserActivity(userId) {
-  console.log(typeof userId)
   const response = await fetch(`http://localhost:3000/user/${userId}/activity`)
   const json = await response.json()
 

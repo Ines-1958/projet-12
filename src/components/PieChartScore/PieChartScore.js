@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import '../PieChartScore/PieChartScore.scss'
 // import { getUserScore } from '../../service/mock/userData.js'
 import { getUserScore } from '../../service/API/fetchData'
@@ -22,8 +22,6 @@ export default function PieChartScore() {
       setScorePercent(score * 100)
       setScoreDegree(score * 360 + 90)
     })
-
-    // console.log(score)
   })
   const data = [
     {
@@ -56,7 +54,6 @@ export default function PieChartScore() {
             startAngle={90}
             cornerRadius={87}
           />
-          {/* <Pie fill="#FFFFFF" /> */}
         </PieChart>
       </ResponsiveContainer>
     </div>

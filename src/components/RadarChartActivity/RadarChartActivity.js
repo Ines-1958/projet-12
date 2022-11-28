@@ -10,7 +10,6 @@ import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis,
   ResponsiveContainer,
 } from 'recharts'
 
@@ -20,17 +19,12 @@ import {
  */
 export default function RadarChartActivity() {
   const { userId } = useParams()
-  // console.log(userId)
 
   const [activity, setActivity] = useState([])
 
   useEffect(() => {
     getUserPerformance(userId).then((t) => setActivity(t))
-    // console.log(getUserPerformance)
-    // console.log(activity)
   }, [])
-
-  // console.log(activity)
 
   /**
    * Translates the value of kind from English to French
@@ -38,8 +32,6 @@ export default function RadarChartActivity() {
    * @returns {{value: number, kind: string}} the value of the kind in French
    */
   const formattedKind = activity.map((data) => {
-    // console.log(data)
-    console.log(data.kind)
     switch (data.kind) {
       case 1:
         return { ...data, kind: 'Intensité' }
@@ -57,25 +49,11 @@ export default function RadarChartActivity() {
         return { ...data }
     }
   })
-  console.log(formattedKind)
 
   return (
     <div className="radar-chart-container chart-content">
       <ResponsiveContainer width="100%" height="100%">
-        <RadarChart
-          // cx={300}
-          // cy={250}
-          // outerRadius={150}
-
-          cx="50%"
-          cy="50%"
-          outerRadius="65%"
-          // width={258}
-          // height={300}
-          data={formattedKind}
-          // padding={{ left: -10, right: -30 }}
-          // padding={{ left: -10 }}
-        >
+        <RadarChart cx="50%" cy="50%" outerRadius="50%" data={formattedKind}>
           <PolarGrid radialLines={false} />
           <PolarAngleAxis
             dataKey="kind"
@@ -83,11 +61,9 @@ export default function RadarChartActivity() {
             tick={{ fontSize: 11 }}
             tickLine={false}
           />
-          {/* <PolarRadiusAxis /> */}
 
           <Radar
             dataKey="value"
-            // stroke="#8884d8"
             fill="rgba(255, 1, 1, 0.7)"
             fillOpacity={0.6}
           />

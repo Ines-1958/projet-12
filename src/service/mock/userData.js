@@ -21,18 +21,7 @@ export async function getUserById(id) {
   const response = await fetch('/datas/userData.json')
   const json = await response.json()
 
-  // const user = json.data.find((u) => {
-  //   console.log(typeof id)
-  //   console.log(typeof u.id)
-  //   console.log(typeof u.userInfos.firstName)
-  //   return u.id === +id
-  // })
-  console.log(typeof id)
-
   const user = json.data.find((u) => u.id === +id)
-
-  console.log(user.userInfos.firstName)
-  console.log(typeof user.userInfos.firstName)
 
   return user.userInfos.firstName
 }
@@ -46,8 +35,6 @@ export async function getUserPerformance(userId) {
   const response = await fetch('/datas/userPerformance.json')
 
   const json = await response.json()
-
-  console.log(typeof userId)
 
   const userPerformance = json.data.find((u) => {
     return u.userId === +userId
@@ -65,11 +52,7 @@ export async function getUserData(id) {
   const response = await fetch('/datas/userData.json')
   const json = await response.json()
 
-  console.log(typeof id)
-
   const user = json.data.find((u) => u.id === +id)
-  console.log(typeof user.keyData)
-  console.log(user.keyData)
 
   return user.keyData
 }
@@ -84,8 +67,6 @@ export async function getUserScore(id) {
   const json = await response.json()
 
   const userScore = json.data.find((u) => {
-    console.log(typeof id)
-
     return u.id === +id
   })
 

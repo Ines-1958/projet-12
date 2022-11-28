@@ -4,27 +4,17 @@ import Header from '../../components/Header/Header'
 import NavBar from '../../components/NavBar/NavBar'
 import '../Home/Home.scss'
 import '../../service/mock/userData.js'
-// import getUser, { UserData } from '../classData/userData'
-// import getUser, { UserData } from '../../classData/userData.js'
 import { getUser } from '../../service/mock/userData.js'
 import Dashboard from '../Dashboard/Dashboard'
-// import FetchData from '../../API/fetchData'
 
 export default function Home(props) {
   const { id } = useParams()
-  // console.log(id)
 
   const [user, setUser] = useState([])
-  // console.log(user)
 
   useEffect(() => {
-    // setDataUser(getUser())
     getUser().then((t) => setUser(t))
-    // console.log(getUser)
-
-    // console.log(user)
   }, [])
-  // console.log(user)
 
   return (
     <div className="card-container">

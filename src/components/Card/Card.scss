@@ -1,19 +1,14 @@
 .data-container {
   display: flex;
   flex-direction: column;
-  // gap: 39px;
   gap: 1rem;
-  @media only screen and (max-width: 780px) {
-    gap: 0.7rem;
-  }
+
   .data-content {
     display: flex;
-    // gap: 24px;
-    background: #fbfbfb;
-    // background-color: orange;
+    // background: #fbfbfb;
+    background-color: orange;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
     border-radius: 5px;
-    // padding: 32px;
     gap: 1rem;
     padding: 1rem;
 
@@ -24,6 +19,11 @@
     img {
       width: 60px;
       height: 60px;
+
+      @media only screen and (max-width: 780px) {
+        width: 52px;
+        height: 52px;
+      }
     }
 
     .title-content {
@@ -33,11 +33,17 @@
           font-weight: 700;
           font-size: 20px;
           color: #282d30;
+          @media only screen and (max-width: 780px) {
+            font-size: 0.8rem;
+          }
         }
         &.title {
           font-weight: 500;
           font-size: 14px;
           color: #74798c;
+          @media only screen and (max-width: 780px) {
+            font-size: 12px;
+          }
         }
       }
     }
