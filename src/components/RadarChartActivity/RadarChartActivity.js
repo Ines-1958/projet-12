@@ -28,7 +28,6 @@ export default function RadarChartActivity() {
 
   /**
    * Translates the value of kind from English to French
-   *
    * @returns {{value: number, kind: string}} the value of the kind in French
    */
   const formattedKind = activity.map((data) => {

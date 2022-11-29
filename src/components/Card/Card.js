@@ -25,7 +25,7 @@ export default function Card() {
     getUserData(userId).then((users) => {
       setDatas(users)
     })
-  }, [])
+  }, [userId])
 
   return (
     <div className="data-container">
