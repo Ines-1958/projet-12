@@ -25,7 +25,7 @@ export default function LineChartActivity() {
     getUserAverageSessions(userId).then((users) => {
       setSessions(users)
     })
-  }, [])
+  }, [userId])
 
   /**
    * Tooltip customization

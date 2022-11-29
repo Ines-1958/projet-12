@@ -26,7 +26,7 @@ export default function BarChartActivity() {
     getUserActivity(userId).then((users) => {
       setDataActivity(users)
     })
-  }, [])
+  }, [userId])
 
   /**
    * Converting dates to days of the week

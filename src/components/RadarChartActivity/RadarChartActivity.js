@@ -24,7 +24,7 @@ export default function RadarChartActivity() {
 
   useEffect(() => {
     getUserPerformance(userId).then((t) => setActivity(t))
-  }, [])
+  }, [userId])
 
   /**
    * Translates the value of kind from English to French
